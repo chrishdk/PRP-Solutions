@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Denegado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Acceso Denegado</h1>
+        <p>Lo sentimos, no tienes permiso para acceder a esta página.</p>
+        <button id="backButton" class="btn btn-secondary">Volver a la Página Anterior</button>
+
+    </div>
+
+    <script>
+        // Función para volver a la página anterior
+        document.getElementById('backButton').onclick = function() {
+            if (document.referrer) {
+                window.location.href = document.referrer; 
+            } else {
+                // Si no hay referencia, redirigir a la página de inicio
+                window.location.href = '/';
+            }
+        };
+        
+        // También podrías hacer que el botón de inicio dirija a otra página
+        document.getElementById('backButton').onclick = function() {
+            history.back(); // Este método puede usarse para volver a la última página en el historial
+        };
+    </script>
+</body>
+</html>

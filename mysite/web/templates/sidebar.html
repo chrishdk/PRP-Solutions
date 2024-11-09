@@ -1,0 +1,83 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+      <div class="sidebar-brand-icon rotate-n-15">
+          <!-- <i class="fas fa-laugh-wink"></i> -->
+      </div>
+      <div class="sidebar-brand-text mx-3">PRP Solutions</div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0" />
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item" id="dashboard-item" style="display: none;">
+      <a class="nav-link" href="{% url 'dashboard' %}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+      </a>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Pages</div>
+
+  <!-- Nav Item - Tables -->
+  <li class="nav-item" id="ticket-item" style="display: none;">
+      <a class="nav-link" href="{% url 'ticket' %}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tickets</span>
+      </a>
+  </li>
+  <li class="nav-item" id="historial-item" style="display: none;">
+    <a class="nav-link" href="{% url 'historial' %}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Historial</span>
+    </a>
+</li>
+
+  <li class="nav-item" id="user" style="display: none;">
+    <a class="nav-link" href="{% url 'user' %}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Tickets</span>
+    </a>
+</li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block" />
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+</ul>
+<!-- End of Sidebar -->
+
+<script>
+  // Función para obtener el valor de una cookie
+  function getCookie(name) {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+          let [key, value] = cookie.trim().split('=');
+          if (key === name) return decodeURIComponent(value);
+      }
+      return null;
+  }
+
+  // Obtener el rol del usuario de la cookie
+  const userRole = getCookie('userRole');
+
+  // Mostrar/ocultar elementos del sidebar según el rol
+  if (userRole) {
+      if (userRole.includes('admin')) {
+          document.getElementById('dashboard-item').style.display = 'block';
+          document.getElementById('ticket-item').style.display = 'block';
+          document.getElementById('historial-item').style.display='block';
+      } else if (userRole.includes('user')) {
+          document.getElementById('user').style.display = 'block';
+          // Puedes ocultar el dashboard para usuarios regulares
+      }
+  }
+</script>
